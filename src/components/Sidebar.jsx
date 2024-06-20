@@ -50,10 +50,10 @@ function Sidebar() {
 
             {/* <!-- Nav Item - Utilities Collapse Menu --> */}
             <li className="nav-item">
-                <Link to='/view-user' className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                <Link to='/nested-example' className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i className="fas fa-fw fa-wrench"></i>
-                    <span>View User</span>
+                    <span>Nested Example</span>
                 </Link>
                 <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
