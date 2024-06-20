@@ -2,10 +2,11 @@ import React, { useState,useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../App';
 
-function Add({val,setVal}) {
+function Add() {
 
-    
+    let {val,setVal} = useContext(UserContext)
 
     let [name,setName] = useState("")
     let [email,setEmail] = useState("")

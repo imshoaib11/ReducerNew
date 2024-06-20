@@ -1,10 +1,11 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect,useContext} from 'react'
 import { useNavigate,useParams } from 'react-router-dom'
 import findIndexById from '../utils/Helper'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { UserContext } from '../../App';
 
-function Add({val,setVal}) {
+function Add() {
     
   let [name,setName] = useState("")
   let [email,setEmail] = useState("")
@@ -13,7 +14,8 @@ function Add({val,setVal}) {
   let {id} = useParams()
   let navigate = useNavigate()
 
-  
+  let {val,setVal} = useContext(UserContext)
+
     {/* //useEffect
     //1. Without dependency array - Triggers during the initial rendering and any state change happens
     // useEffect(()=>{

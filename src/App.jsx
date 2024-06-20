@@ -4,6 +4,8 @@ import Add from './components/Dashboard/Add'
 import View from './components/Dashboard/View'
 import Dashboard from './components/Dashboard'
 import {BrowserRouter, Routes, Route,Navigate} from 'react-router-dom'
+import DashboardContextComponent from './context/DashboardContext'
+export const UserContext = React.createContext()
 
 function App() {
   
@@ -41,16 +43,17 @@ function App() {
   return <> 
 
     <div id="wrapper">
-
+        <UserContext.Provider value = {{val,setVal}}>
         <BrowserRouter>
          <Sidebar/>
          <Routes>
-            <Route path='/' element ={<Dashboard val={val} setVal={setVal}/>}/>
-            <Route path='/add-user' element ={<Add val={val} setVal={setVal}/>}/>
-            <Route path='/view-user/:id' element ={<View val={val} setVal={setVal}/>}/>
+            <Route path='/' element ={<DashboardContextComponent><Dashboard /></DashboardContextComponent>}/>
+            <Route path='/add-user' element ={<Add />}/>
+            <Route path='/view-user/:id' element ={<View />}/>
             <Route path='*' element={<Navigate to='/'/>}/>
          </Routes>
          </BrowserRouter>
+         </UserContext.Provider>
             
 
      </div>

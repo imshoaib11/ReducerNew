@@ -4,40 +4,18 @@ import Table from 'react-bootstrap/Table'
 import { Button } from 'react-bootstrap'
 import findIndexById from '../utils/Helper'
 import {useNavigate} from 'react-router-dom'
+import { UserContext } from '../../App'
+import { DashboardContext } from '../../context/DashboardContext'
 
-function Dashboard({val,setVal}) {
+function Dashboard() {
 
     let navigate = useNavigate()
 
-    let data = [
-        {
-            title: "Earnings Monthly",
-            value: "$40,000",
-            color: "primary",
-            isProgress: false
-        },
-        {
-            title: "Earnings Annual",
-            value: "$215,000",
-            color: "success",
-            isProgress: false,
-            icon: "dollar-sign"
-        },
-        {
-            title: "Earnings Monthly",
-            value: "90",
-            color: "info",
-            isProgress: true,
-            icon: "clipboard-list"
-        },
-        {
-            title: "Earnings Monthly",
-            value: "18",
-            color: "warning",
-            isProgress: false,
-            icon: "comments"
-        }
-    ]
+    let {data} = useContext(DashboardContext)
+    console.log(data)
+
+    let {val,setVal} = useContext(UserContext)
+    
 
     const handleDelete = (id) =>{
         let index = findIndexById(val,id)
