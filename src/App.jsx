@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useReducer} from 'react'
 import Sidebar from './components/Sidebar'
 import Add from './components/Dashboard/Add'
 import View from './components/Dashboard/View'
@@ -12,44 +12,19 @@ import Feed from './components/NestedExample/Feed'
 import UseRef from './Hooks/UseRef'
 import UseReducer from './Hooks/UseReducer'
 export const UserContext = React.createContext()
+// getting the reducer function and intialValue from Reducer file
+import reducer,{intialValue} from './components/utils/Reducer'
 
+  
 function App() {
   
-    let [val,setVal ] = useState([
-      {
-        id:1,
-        name:"Nagarajan",
-        email:"naga@gmail.com",
-        mobile:"987654321",
-        batch:"FSD57"
-      },
-      {
-        id:2,
-        name:"Raj",
-        email:"raj@gmail.com",
-        mobile:"123456789",
-        batch:"FSD57"
-      },
-      {
-        id:3,
-        name:"Arun",
-        email:"arun@gmail.com",
-        mobile:"789783378",
-        batch:"FSD58"
-      },
-      {
-        id:4,
-        name:"Khaleel",
-        email:"khaleel@gmail.com",
-        mobile:"5432178789",
-        batch:"FSD58"
-      }
-    ])
+    let [val,dispatch ] = useReducer(reducer,intialValue)
+      
 
   return <> 
 
     <div id="wrapper">
-        <UserContext.Provider value = {{val,setVal}}>
+        <UserContext.Provider value = {{val,dispatch}}>
         <BrowserRouter>
          <Sidebar/>
          <Routes>
@@ -75,3 +50,4 @@ function App() {
 }
 
 export default App
+

@@ -6,7 +6,7 @@ import findIndexById from '../utils/Helper'
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../../App'
 import { DashboardContext } from '../../context/DashboardContext'
-
+import { Actions} from '../utils/Actions'
 function Dashboard() {
 
     let navigate = useNavigate()
@@ -14,21 +14,7 @@ function Dashboard() {
     let {data} = useContext(DashboardContext)
     console.log(data)
 
-    let {val,setVal} = useContext(UserContext)
-    
-
-    const handleDelete = (id) =>{
-        let index = findIndexById(val,id)
-        if(index!== -1)
-        {
-            let newArray =[...val]// deep copy to achieve Immutability
-            newArray.splice(index,1)
-            setVal(newArray)
-        }
-        else
-            console.error("Invalid Id")
-    }
-
+    let {val,dispatch} = useContext(UserContext)
 
   return <>
         <div id="content-wrapper" className="d-flex flex-column">
@@ -65,7 +51,7 @@ function Dashboard() {
                                         <td>
                                             <Button variant ="primary"onClick={()=>navigate(`/view-user/${e.id}`)}>Edit</Button>
                                             &nbsp;&nbsp;
-                                            <Button variant="danger" onClick={()=>handleDelete(e.id)}>Delete</Button>
+                                            <Button variant="danger" onClick={()=>dispatch({type:Actions.DELETE_USER,payload:e.id})}>Delete</Button>
                                         </td>
                                     </tr> 
                                 })

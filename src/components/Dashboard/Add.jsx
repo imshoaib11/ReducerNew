@@ -3,10 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../App';
+import { Actions} from '../utils/Actions'
 
 function Add() {
 
-    let {val,setVal} = useContext(UserContext)
+    let {val,dispatch} = useContext(UserContext)
 
     let [name,setName] = useState("")
     let [email,setEmail] = useState("")
@@ -21,12 +22,9 @@ function Add() {
         name,
         email,
         mobile,
-        batch
+        batch 
         }
-        console.log(newUser)
-        let newArray = [...val]
-        newArray.push(newUser)
-        setVal(newArray)
+        dispatch({type:Actions.ADD_USER,payload:newUser})
 
         navigate('/')
     }

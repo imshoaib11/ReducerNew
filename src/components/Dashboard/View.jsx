@@ -4,6 +4,7 @@ import findIndexById from '../utils/Helper'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { UserContext } from '../../App';
+import { Actions} from '../utils/Actions'
 
 function Add() {
     
@@ -14,7 +15,7 @@ function Add() {
   let {id} = useParams()
   let navigate = useNavigate()
 
-  let {val,setVal} = useContext(UserContext)
+  let {val,dispatch} = useContext(UserContext)
 
     {/* //useEffect
     //1. Without dependency array - Triggers during the initial rendering and any state change happens
@@ -59,9 +60,10 @@ function Add() {
         let index = findIndexById(val,id)
         let editedData = {id:val[index].id,name,email,mobile,batch}//forming the object
 
-        let newArray = [...val]//deep copy
-        newArray.splice(index,1,editedData)//replace the old data with edited data
-        setVal(newArray)
+        // let newArray = [...val]//deep copy
+        // newArray.splice(index,1,editedData)//replace the old data with edited data
+
+        dispatch({type:Actions.EDIT_USER,payload:editedData})
 
         navigate('/')
 
